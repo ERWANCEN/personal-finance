@@ -1,0 +1,17 @@
+# Virtual Python env
+.venv/
+
+# Automatic Python cache folder
+__pycache__/
+
+# Local secrets and configuration
+.env
+
+# SQLite database files
+*.db
+
+# node_modules folder
+node_modules/
+
+# OS-generated files
+.DS_Store
