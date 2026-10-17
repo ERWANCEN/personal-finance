@@ -3,10 +3,14 @@ def ask_expenses():
 
     expenses = []
     for i in range(number_of_expenses):
-        expense = 0
-        while expense <= 0:
-            expense = int(input(f"Dépense {i + 1}/{number_of_expenses} : "))
-        expenses.append(expense)
+        amount = 0
+        while amount <= 0:
+            try:
+                amount = int(input(f"Dépense {i + 1}/{number_of_expenses} : "))
+            except ValueError:
+                print("Merci d'entrer un nombre.")
+        category = input("Catégorie : ").strip().capitalize()
+        expenses.append({"amount": amount, "category": category})
     return expenses
 
 
