@@ -1,4 +1,5 @@
 from decimal import Decimal, InvalidOperation
+from datetime import date
 
 
 def ask_expenses():
@@ -9,13 +10,24 @@ def ask_expenses():
         amount = 0
         while amount <= 0:
             try:
-                getting_text = input(f"Dépense {i + 1}/{number_of_expenses} : ").strip().replace(",", ".")
-                cleaning_text = Decimal(getting_text) * 100
-                amount = int(cleaning_text)
+                amount_text = input(f"Dépense {i + 1}/{number_of_expenses} : ").strip().replace(",", ".")
+                amount_decimal = Decimal(amount_text) * 100
+                amount = int(amount_decimal)
             except (ValueError, InvalidOperation):
                 print("Merci d'entrer un nombre.")
         category = input("Catégorie : ").strip().capitalize()
-        expenses.append({"amount": amount, "category": category})
+        while True:
+            date_text = input("Date (AAAA-MM-JJ, vide = aujourd'hui) : ").strip()
+            if date_text == "":
+                expense_date = date.today()
+                break
+            else:
+                try:
+                    expense_date = date.fromisoformat(date_text)
+                    break
+                except ValueError:
+                    print("Merci d'entrer une date valide et au format AAAA-MM-JJ.")
+        expenses.append({"amount": amount, "category": category, "date": expense_date})
     return expenses
 
 

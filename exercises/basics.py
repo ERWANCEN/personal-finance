@@ -21,7 +21,7 @@ def main():
         biggest_expense = finance.compute_biggest_expense(expenses)
 
         for index, expense in enumerate(expenses, start=1):
-            print(f"{index}. {format_amount(expense["amount"])} ({expense['category']})")
+            print(f"{index}. {expense["date"]} - {format_amount(expense["amount"])} ({expense["category"]})")
 
         print(f"La dépense la plus élevée est de : {format_amount(biggest_expense)}")
         print("Les deux dernières dépenses saisies sont : ")
