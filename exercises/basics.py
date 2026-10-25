@@ -3,6 +3,7 @@ from datetime import date
 
 import finance
 from prompts import ask_expenses, ask_income
+from models import Expense
 
 
 def format_amount(cents) -> str:
@@ -26,13 +27,13 @@ def main():
         biggest_expense = finance.compute_biggest_expense(current_month_expenses)
 
         for index, expense in enumerate(current_month_expenses, start=1):
-            print(f"{index}. {expense["date"]} - {format_amount(expense["amount"])} ({expense["category"]})")
+            print(f"{index}. {expense.spent_on} - {format_amount(expense.amount)} ({expense.category})")
 
         print(f"La dépense la plus élevée est de : {format_amount(biggest_expense)}")
         print("Les deux dernières dépenses saisies sont : ")
 
         for expense in current_month_expenses[-2:]:
-            print(f"- {expense["category"]} : {format_amount(expense["amount"])}")
+            print(f"- {expense.category} : {format_amount(expense.amount)}")
 
     else:
         print("Aucune dépense saisie ce mois-ci.")

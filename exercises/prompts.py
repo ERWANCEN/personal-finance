@@ -1,11 +1,11 @@
 from decimal import Decimal, InvalidOperation
 from datetime import date
+from models import Expense
 
 
 def ask_expenses():
     number_of_expenses = int(input("Combien de dépenses voulez-vous saisir ? "))
 
-    expenses = []
     for i in range(number_of_expenses):
         amount = 0
         while amount <= 0:
@@ -27,7 +27,7 @@ def ask_expenses():
                     break
                 except ValueError:
                     print("Merci d'entrer une date valide et au format AAAA-MM-JJ.")
-        expenses.append({"amount": amount, "category": category, "date": expense_date})
+        expenses = Expense(amount, category, expense_date)
     return expenses
 
 
